@@ -10,6 +10,7 @@
   <div class="container">
     <h2 style="text-align:center;">选择你的罪人角色</h2>
     <div id="characterGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;"></div>
+    <div id="pixelBar" style="display:flex;justify-content:center;gap:10px;margin:32px 0 0 0;"></div>
   </div>
   <script>
     // 12个罪人角色卡片
@@ -43,7 +44,6 @@
     ];
 
     function showCharacterDetail(idx) {
-      // 创建弹窗
       let modal = document.getElementById('charModal');
       if (!modal) {
         modal = document.createElement('div');
@@ -51,20 +51,20 @@
         modal.className = 'modal';
         modal.innerHTML = `<div class='modal-content' style='max-width:600px;padding:0;'>
           <div id='charDetail'></div>
-          <button style='margin:16px auto 8px auto;display:block;' onclick="document.getElementById('charModal').classList.add('hidden')">关闭</button>
+          <div style='display:flex;gap:18px;justify-content:center;margin:18px 0 10px 0;'>
+            <button id='btnConfirm' style='padding:8px 28px;font-size:1.1em;background:#ffe066;color:#222;border:none;border-radius:8px;cursor:pointer;'>确定</button>
+            <button id='btnBack' style='padding:8px 28px;font-size:1.1em;background:#222;color:#ffe066;border:none;border-radius:8px;cursor:pointer;'>返回</button>
+          </div>
         </div>`;
         document.body.appendChild(modal);
       }
-      // 填充内容
       const detail = document.getElementById('charDetail');
-      // 角色名、编号、阵营
       let charName = `罪人${idx}号`;
       let camp = '野兽派';
       let illu = `<div style='width:140px;height:260px;background:#222;border-radius:16px;box-shadow:0 2px 12px #0008;display:flex;align-items:center;justify-content:center;overflow:hidden;'><span style='color:#555;font-size:13px;'>立绘待补充</span></div>`;
       if(idx>=1 && idx<=12){
         illu = `<div style='width:140px;height:260px;background:#222;border-radius:16px;box-shadow:0 2px 12px #0008;overflow:hidden;display:flex;align-items:center;justify-content:center;'><img src='assets/char${idx}.png' alt='罪人${idx}' style='width:100%;height:100%;object-fit:cover;image-rendering:pixelated;'/></div>`;
       }
-      // 技能卡竖排
       const skillCards = skills.map((s,i)=>`
         <div style='width:170px;max-width:90vw;background:#181818;border-radius:10px;margin:10px 0 0 0;border-left:6px solid ${s.border};box-shadow:0 2px 8px #0006;'>
           <div style='display:flex;align-items:center;gap:10px;padding:10px 10px 0 10px;'>
@@ -92,7 +92,16 @@
         </div>
       `;
       modal.classList.remove('hidden');
+      // 按钮事件
+      document.getElementById('btnBack').onclick = ()=>{
+        modal.classList.add('hidden');
+      };
+      document.getElementById('btnConfirm').onclick = ()=>{
+        window.location.href = 'game.html';
+      };
     }
+    // 渲染角色卡片和下方像素小人
+    const pixelBar = document.getElementById('pixelBar');
     for(let i=1;i<=12;i++){
       const card = document.createElement('div');
       card.className = 'player-card';
@@ -106,6 +115,17 @@
       `;
       card.onclick = ()=>showCharacterDetail(i);
       grid.appendChild(card);
+      // 下方像素小人
+      const px = document.createElement('img');
+      px.src = `assets/char${i}.png`;
+      px.className = 'mc-char';
+      px.style.width = '36px';
+      px.style.height = '36px';
+      px.style.margin = '0 2px';
+      px.style.imageRendering = 'pixelated';
+      px.style.borderRadius = '6px';
+      px.style.background = '#111';
+      pixelBar.appendChild(px);
     }
     // 简单像素小人动画
     setInterval(()=>{

@@ -7,17 +7,49 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" style="text-align:center;min-height:60vh;display:flex;flex-direction:column;justify-content:center;">
+  <div class="container" style="text-align:center;min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:transparent;">
+    <img src="assets/char1.png" alt="封面立绘" style="max-width:260px;max-height:60vh;border-radius:18px;box-shadow:0 4px 32px #000a;margin:32px 0 24px 0;background:#181818;" />
     <h1 style="font-size:2.2em;margin-bottom:2em;letter-spacing:2px;">水月巡游</h1>
     <button id="startBtn" style="font-size:1.2em;padding:16px 32px;">开始游戏</button>
   </div>
   <script src="starwars-intro.js"></script>
   <link rel="stylesheet" href="starwars-intro.css">
   <script>
+    // 星战动画右上角Skip按钮
+    function addSkipBtn(onSkip) {
+      let btn = document.getElementById('skipBtn');
+      if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'skipBtn';
+        btn.innerText = 'Skip';
+        btn.style.position = 'fixed';
+        btn.style.top = '24px';
+        btn.style.right = '24px';
+        btn.style.zIndex = 2001;
+        btn.style.background = '#222a';
+        btn.style.color = '#ffe066';
+        btn.style.fontSize = '1.1em';
+        btn.style.border = 'none';
+        btn.style.borderRadius = '8px';
+        btn.style.padding = '8px 18px';
+        btn.style.cursor = 'pointer';
+        btn.onclick = function(){
+          if(document.getElementById('starwars-bg')) document.getElementById('starwars-bg').remove();
+          btn.remove();
+          onSkip();
+        };
+        document.body.appendChild(btn);
+      }
+    }
     document.getElementById('startBtn').onclick = function() {
+      addSkipBtn(()=>{ window.location.href = 'select.html'; });
       showStarWarsIntro(
         '很久很久以前，水月世界陷入混沌。\n十二位罪人被命运选中，踏上巡游之路。\n他们将面对未知的挑战，迎战强大的Boss，\n在命运的棋盘上书写属于自己的传说……',
-        () => { window.location.href = 'select.html'; }
+        () => {
+          let btn = document.getElementById('skipBtn');
+          if(btn) btn.remove();
+          window.location.href = 'select.html';
+        }
       );
     };
   </script>
