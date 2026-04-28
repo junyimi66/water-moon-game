@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动漫飞行棋Boss桌游</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>动漫飞行棋Boss桌游</h1>
+    <div id="players"></div>
+    <div class="controls">
+      <button id="rollBtn">掷骰/前进</button>
+      <span id="currentPlayer"></span>
+    </div>
+    <div id="eventModal" class="modal hidden">
+      <div class="modal-content">
+        <span id="eventText"></span>
+        <div id="eventActions"></div>
+        <button onclick="closeEventModal()">关闭</button>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

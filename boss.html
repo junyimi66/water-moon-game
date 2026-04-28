@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boss战 - 动漫飞行棋桌游</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Boss战</h1>
+    <div id="bossPlayers"></div>
+    <div id="bossActions"></div>
+    <div id="pixelCardDemo" style="margin-top:24px;"></div>
+    <div id="bossModal" class="modal hidden">
+      <div class="modal-content">
+        <span id="bossModalText"></span>
+        <div id="bossModalActions"></div>
+        <button onclick="closeBossModal()">关闭</button>
+      </div>
+    </div>
+  </div>
+  <script src="boss.js"></script>
+  <script src="hotreload.js"></script>
+</body>
+</html>

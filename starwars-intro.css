@@ -1,0 +1,35 @@
+/* 星战风格文字滚动动画 */
+.starwars-bg {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, #222 0%, #000 100%);
+  z-index: 1000;
+  overflow: hidden;
+}
+.starwars-intro {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 400px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.starwars-crawl {
+  color: #ffe066;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.1em;
+  text-align: center;
+  width: 80vw;
+  max-width: 600px;
+  transform: rotateX(20deg);
+  animation: crawl 18s linear forwards;
+  line-height: 1.7;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px #000, 0 0 8px #ffe06688;
+}
+@keyframes crawl {
+  0% { bottom: -60vh; }
+  100% { bottom: 120vh; }
+}

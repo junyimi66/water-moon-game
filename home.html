@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水月巡游 - 游戏开始</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container" style="text-align:center;min-height:60vh;display:flex;flex-direction:column;justify-content:center;">
+    <h1 style="font-size:2.2em;margin-bottom:2em;letter-spacing:2px;">水月巡游</h1>
+    <button id="startBtn" style="font-size:1.2em;padding:16px 32px;">开始游戏</button>
+  </div>
+  <script src="starwars-intro.js"></script>
+  <link rel="stylesheet" href="starwars-intro.css">
+  <script>
+    document.getElementById('startBtn').onclick = function() {
+      showStarWarsIntro(
+        '很久很久以前，水月世界陷入混沌。\n十二位罪人被命运选中，踏上巡游之路。\n他们将面对未知的挑战，迎战强大的Boss，\n在命运的棋盘上书写属于自己的传说……',
+        () => { window.location.href = 'select.html'; }
+      );
+    };
+  </script>
+  <script src="hotreload.js"></script>
+</body>
+</html>
